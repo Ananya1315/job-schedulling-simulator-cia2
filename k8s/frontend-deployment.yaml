@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: job-scheduler-frontend
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: job-scheduler-frontend
+
+  template:
+    metadata:
+      labels:
+        app: job-scheduler-frontend
+
+    spec:
+      containers:
+        - name: frontend
+          image: anu1315/job-scheduler-frontend:latest
+          imagePullPolicy: Always
+
+          ports:
+            - containerPort: 80
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
