@@ -14,7 +14,7 @@ import ComparisonResults from './components/comparisionResult';
 
 function App() {
 
-  const API_URL = process.env.REACT_APP_API_URL;
+  const API_URL = process.env.REACT_APP_API_URL || "/api";
 
   const [result, setResult] = useState(null);
 

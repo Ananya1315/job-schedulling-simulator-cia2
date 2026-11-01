@@ -88,7 +88,7 @@ jobs:
           context: ./frontend
           push: true
           build-args: |
-            REACT_APP_API_URL=http://localhost:8000
+            REACT_APP_API_URL=/api
           tags: |
             anu1315/job-scheduler-frontend:latest
             anu1315/job-scheduler-frontend:${{ github.sha }}
