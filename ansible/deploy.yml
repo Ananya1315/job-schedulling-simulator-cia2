@@ -1,0 +1,27 @@
+---
+- name: Deploy Job Scheduling Simulator on GKE
+  hosts: kubernetes
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Apply backend deployment
+      command: kubectl apply -f ../k8s/backend-deployment.yaml
+
+    - name: Apply backend service
+      command: kubectl apply -f ../k8s/backend-service.yaml
+
+    - name: Apply frontend deployment
+      command: kubectl apply -f ../k8s/frontend-deployment.yaml
+
+    - name: Apply frontend service
+      command: kubectl apply -f ../k8s/frontend-service.yaml
+
+    - name: Wait for backend rollout
+      command: kubectl rollout status deployment/job-scheduler-backend --timeout=180s
+
+    - name: Wait for frontend rollout
+      command: kubectl rollout status deployment/job-scheduler-frontend --timeout=180s
+
+    - name: Show Kubernetes resources
+      command: kubectl get pods,services
